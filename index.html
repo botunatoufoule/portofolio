@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MUZA LAB — An independent creative practice</title>
+<meta name="description" content="MUZA LAB is an independent creative practice by Nabila Zahra Muzakki: graphic design, motion graphic, video editing and visual experiments.">
+<meta property="og:title" content="MUZA LAB — An independent creative practice">
+<meta property="og:description" content="Graphic design, motion graphic, video editing and visual experiments.">
+<meta property="og:image" content="images/cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --ink:#0a0a0a; --muted:#7a7a7a; --line:#dcdcdc; --card:#f0f0f0;
+    --accent:#c9f25c;
+    --sans:"Space Grotesk",system-ui,sans-serif;
+    --serif:"Instrument Serif",Georgia,serif;
+    --pad:clamp(20px,4vw,56px);
+  }
+  /* Section gelap = hitam putih dibalik */
+  .dark{--bg:#0a0a0a;--ink:#ffffff;--muted:#9a9a9a;--line:#2a2a2a;--card:#1a1a1a}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#fff;color:#0a0a0a;font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--accent);color:#0a0a0a}
+  .pad{padding-left:var(--pad);padding-right:var(--pad)}
+  .eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .serif{font-family:var(--serif);font-style:italic;font-weight:400}
+  section{background:var(--bg);color:var(--ink)}
+
+  /* NAV (kanan atas: 3 menu) */
+  header{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:20px var(--pad);mix-blend-mode:difference;color:#fff}
+  header .brand{font-weight:700;letter-spacing:.04em}
+  header nav{display:flex;gap:clamp(16px,3vw,32px);font-size:.9rem}
+  header nav a{position:relative;opacity:.85;transition:.2s}
+  header nav a::after{content:"";position:absolute;left:0;bottom:-3px;height:1px;width:0;background:#fff;transition:width .3s}
+  header nav a:hover{opacity:1}header nav a:hover::after{width:100%}
+
+  /* HERO */
+  .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-top:120px;padding-bottom:36px;background:#fff;color:#0a0a0a}
+  .hero h1{font-size:clamp(4.2rem,21vw,19rem);line-height:.82;letter-spacing:-.05em;font-weight:700}
+  .hero .mask{overflow:hidden;padding-bottom:.06em}
+  .hero h1 span{display:inline-block;transform:translateY(110%);animation:rise 1s cubic-bezier(.2,.8,.2,1) forwards}
+  .hero .mask:nth-child(2) span{animation-delay:.08s}
+  .hero h1 .lab{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.03em;background:var(--accent);padding:0 .1em;border-radius:.06em}
+  @keyframes rise{to{transform:none}}
+  .hero-meta{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:34px;flex-wrap:wrap}
+  .hero-meta p{max-width:430px;font-size:1.05rem}
+  .scroll{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#7a7a7a}
+
+  /* MARQUEE */
+  .marquee{overflow:hidden;background:var(--accent);color:#0a0a0a;padding:14px 0;border-block:1px solid #0a0a0a}
+  .track{display:flex;gap:48px;width:max-content;animation:slide 30s linear infinite;font-size:1.15rem;font-weight:500;white-space:nowrap}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* SECTIONS */
+  section{padding:clamp(70px,12vw,150px) 0 clamp(20px,4vw,50px)}
+  .sec-head{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--ink);padding-top:16px;margin-bottom:clamp(30px,5vw,60px)}
+  .sec-head h2{font-size:clamp(2rem,6vw,5rem);letter-spacing:-.03em;line-height:1}
+  .sec-head .num{font-size:.85rem;color:var(--muted)}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:var(--pad)}
+  .statement{font-size:clamp(1.4rem,3.4vw,2.8rem);line-height:1.15;letter-spacing:-.02em}
+  .statement em{font-family:var(--serif);font-weight:400;background:var(--accent);color:#0a0a0a;padding:0 .12em;border-radius:.1em}
+  .about-side p{margin-bottom:22px;color:var(--muted);max-width:380px}
+  .disc{list-style:none;border-top:1px solid var(--line)}
+  .disc li{padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:.95rem}
+  .disc li span{color:var(--muted);text-align:right}
+  .cv{display:inline-block;margin-top:24px;border:1px solid var(--ink);border-radius:999px;padding:10px 22px;transition:.25s}
+  .cv:hover{background:var(--accent);color:#0a0a0a;border-color:var(--accent)}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+
+  /* EXPLORE (tab: sertifikat / event) */
+  .explore{margin-top:clamp(50px,8vw,100px)}
+  .explore-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  .tabs{display:inline-flex;border:1px solid var(--ink);border-radius:999px;padding:4px}
+  .tabs button{font:inherit;font-size:.9rem;background:none;color:var(--ink);border:0;padding:8px 20px;border-radius:999px;cursor:pointer;transition:.25s}
+  .tabs button.on{background:var(--ink);color:var(--bg)}
+  .explore-desc{color:var(--muted);font-size:.92rem;max-width:520px;margin-bottom:22px}
+  .panel{display:none}.panel.on{display:block}
+
+  /* SLIDER (dipakai di mana-mana) */
+  .slider-wrap{position:relative}
+  .slider{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px;cursor:grab}
+  .slider::-webkit-scrollbar{display:none}
+  .slider.drag{cursor:grabbing;scroll-snap-type:none;user-select:none}
+  .slider>*{flex:0 0 auto;scroll-snap-align:start}
+  .arrows{display:flex;gap:8px}
+  .arrows button{width:44px;height:44px;border-radius:50%;border:1px solid var(--ink);background:none;color:var(--ink);font-size:1.1rem;cursor:pointer;transition:.2s}
+  .arrows button:hover{background:var(--accent);border-color:var(--accent);color:#0a0a0a}
+  .row-head{display:flex;justify-content:space-between;align-items:center;margin:0 0 18px}
+  .row-head h3{font-size:1rem;font-weight:500;display:flex;gap:10px;align-items:center}
+  .row-head h3 small{color:var(--muted);font-weight:400}
+  .row+.row{margin-top:clamp(40px,6vw,70px)}
+
+  /* kartu di slider */
+  .cert,.evt{width:clamp(220px,26vw,300px);border-radius:12px;overflow:hidden;background:var(--card);cursor:zoom-in}
+  .cert{aspect-ratio:4/3}.evt{aspect-ratio:4/3}
+  .cert img,.evt img{width:100%;height:100%;object-fit:cover;transition:transform .6s;pointer-events:none}
+  .cert:hover img,.evt:hover img{transform:scale(1.05)}
+
+  .pcard{width:clamp(260px,30vw,360px);display:block}
+  .pcard .frame{aspect-ratio:4/5;background:var(--card);border-radius:14px;overflow:hidden}
+  .pcard img{width:100%;height:100%;object-fit:cover;transition:transform .7s;pointer-events:none}
+  .pcard:hover img{transform:scale(1.05)}
+  .pcard h4{margin-top:12px;font-weight:500;font-size:1.05rem;letter-spacing:-.01em}
+  .pcard p{color:var(--muted);font-size:.86rem;margin-top:2px}
+  .pcard .tag{display:inline-block;margin-top:8px;font-size:.72rem;border:1px solid var(--ink);border-radius:999px;padding:2px 10px}
+
+  .vcard{width:clamp(280px,34vw,400px);display:block}
+  .vcard .t{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000}
+  .vcard .t img{width:100%;height:100%;object-fit:cover;transition:transform .6s;pointer-events:none}
+  .vcard:hover .t img{transform:scale(1.05)}
+  .vcard .t b{position:absolute;right:12px;bottom:12px;width:44px;height:44px;border-radius:50%;background:var(--accent);display:grid;place-items:center;color:#0a0a0a;font-size:.8rem}
+  .vcard h4{margin-top:10px;font-weight:500;font-size:.98rem;line-height:1.3}
+  .vcard span{color:var(--muted);font-size:.85rem}
+
+  /* SELECTED WORKS */
+  .works{list-style:none;border-top:1px solid var(--ink)}
+  .work{display:grid;grid-template-columns:60px 1fr 1fr 90px;gap:16px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line);transition:padding .35s,background .35s,color .35s;cursor:pointer}
+  .work:hover{padding-left:16px;padding-right:16px;background:var(--accent);color:#0a0a0a}
+  .work:hover .n,.work:hover .role{color:#0a0a0a}
+  .work .n{font-size:.85rem;color:var(--muted)}
+  .work h3{font-size:clamp(1.2rem,2.8vw,2.3rem);letter-spacing:-.02em;font-weight:500;line-height:1.1}
+  .work .role{color:var(--muted);font-size:.92rem}
+  .work .yr{text-align:right;font-size:.9rem}
+  .work .m-thumb{display:none}
+  @media(max-width:820px){
+    .work{grid-template-columns:1fr 70px}
+    .work .n,.work .role{display:none}
+    .work .m-thumb{display:block;grid-column:1/-1;aspect-ratio:16/9;object-fit:cover;border-radius:10px;width:100%}
+  }
+  #peek{position:fixed;top:0;left:0;width:300px;aspect-ratio:4/3;pointer-events:none;z-index:25;border-radius:10px;overflow:hidden;opacity:0;transform:translate(-50%,-50%) scale(.85);transition:opacity .25s,transform .25s;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+  #peek.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  #peek img{width:100%;height:100%;object-fit:cover}
+  @media(hover:none),(max-width:820px){#peek{display:none}}
+
+  /* VISUAL EXPERIMENTS */
+  .masonry{columns:4 220px;column-gap:14px}
+  .masonry figure{break-inside:avoid;margin-bottom:14px;border-radius:10px;overflow:hidden;background:var(--card);cursor:zoom-in}
+  .masonry img{width:100%;transition:transform .6s,filter .6s;filter:grayscale(1)}
+  .masonry figure:hover img{transform:scale(1.04);filter:none}
+  .exp-note{margin-top:18px;color:var(--muted);font-size:.9rem}
+
+  /* TERMS */
+  .terms{display:grid;grid-template-columns:repeat(2,1fr);gap:0 var(--pad);border-top:1px solid var(--ink)}
+  .term{display:grid;grid-template-columns:48px 1fr;gap:14px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .term .n{font-size:.85rem;color:var(--muted)}
+  .term h3{font-size:1.25rem;font-weight:500;letter-spacing:-.01em;margin-bottom:6px}
+  .term p{color:var(--muted);font-size:.95rem;max-width:460px}
+  .terms-note{margin-top:22px;color:var(--muted);font-size:.85rem}
+  @media(max-width:720px){.terms{grid-template-columns:1fr}}
+
+  /* CONTACT */
+  .contact{padding-bottom:30px}
+  .contact .big{display:block;font-size:clamp(2.4rem,10vw,9rem);line-height:.95;letter-spacing:-.05em;font-weight:700;margin:10px 0 40px;transition:color .25s}
+  .contact .big:hover{color:var(--accent)}
+  .socials{display:flex;flex-wrap:wrap;gap:12px}
+  .socials a{border:1px solid var(--ink);border-radius:999px;padding:10px 22px;transition:.25s}
+  .socials a:hover{background:var(--accent);border-color:var(--accent);color:#0a0a0a}
+  footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:60px var(--pad) 28px;background:#0a0a0a;color:#9a9a9a;font-size:.82rem}
+
+  /* LIGHTBOX */
+  #lb{position:fixed;inset:0;background:rgba(10,10,10,.95);display:none;place-items:center;z-index:60;padding:24px;cursor:zoom-out}
+  #lb.open{display:grid}
+  #lb img{max-height:92vh;border-radius:8px}
+
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}
+  .reveal.show{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.hero h1 span{transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#top" class="brand">MUZA LAB</a>
+  <nav>
+    <a href="#projects">Creative Projects</a>
+    <a href="#terms">Terms</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero pad">
+    <h1 aria-label="MUZA LAB">
+      <div class="mask"><span>MUZA</span></div>
+      <div class="mask"><span class="lab">Lab.</span></div>
+    </h1>
+    <div class="hero-meta">
+      <p>An independent creative practice. Graphic design, motion graphic, video editing and visual experiments by <b>Nabila Zahra Muzakki</b>.</p>
+      <div class="scroll">Scroll ↓ &nbsp; Est. 2025 · Indonesia</div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+  <!-- 01 ABOUT THE LAB -->
+  <section id="about" class="pad">
+    <div class="sec-head"><h2>About the Lab</h2><span class="num">(01)</span></div>
+    <div class="about-grid reveal">
+      <div class="about-side">
+        <p>Graphic designer dengan 4+ tahun pengalaman. GANTI: tambahkan 1–2 kalimat tentang cara kerja dan apa yang kamu percaya.</p>
+        <ul class="disc">
+          <li>Graphic Design <span>Social · Print · Editorial</span></li>
+          <li>Motion Graphic <span>Script · Design · Animation</span></li>
+          <li>Video Editing <span>Event · Explainer · Campaign</span></li>
+          <li>Videography <span>Documentation</span></li>
+          <li>Photography <span>35mm film</span></li>
+          <li>Software <span>Adobe Creative Cloud</span></li>
+        </ul>
+        <a class="cv" href="https://drive.google.com/drive/folders/1E1kD3V-S5zyidhv7vp_AmQacBWZeOcRb?usp=sharing" target="_blank" rel="noopener">View CV ↗</a>
+      </div>
+      <p class="statement">MUZA LAB is a one-person studio where <em>ideas become visuals</em>: educational posters, campaign graphics, explainer videos and small experiments that don't fit anywhere else.</p>
+    </div>
+
+    <!-- Explore: sertifikat & event dalam satu tampilan -->
+    <div class="explore reveal">
+      <div class="explore-top">
+        <div class="tabs" role="tablist">
+          <button class="on" data-tab="certs" role="tab">Certifications</button>
+          <button data-tab="events" role="tab">Events</button>
+        </div>
+        <div class="arrows" data-for="explore">
+          <button aria-label="Sebelumnya" data-dir="-1">←</button>
+          <button aria-label="Berikutnya" data-dir="1">→</button>
+        </div>
+      </div>
+      <div class="panel on" id="panel-certs">
+        <p class="explore-desc">Sertifikat pelatihan dan program yang pernah kuselesaikan. Klik untuk memperbesar.</p>
+        <div class="slider" id="certs"></div>
+      </div>
+      <div class="panel" id="panel-events">
+        <p class="explore-desc">Dokumentasi event dan kegiatan yang pernah kuikuti atau kukerjakan.</p>
+        <div class="slider" id="events"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 SELECTED WORKS -->
+  <section id="works" class="pad">
+    <div class="sec-head"><h2>Selected Works</h2><span class="num">(02)</span></div>
+    <ul class="works reveal" id="worksList"></ul>
+  </section>
+
+  <!-- 03 CREATIVE PROJECTS (gelap, slider) -->
+  <section id="projects" class="pad dark">
+    <div class="sec-head"><h2>Creative Projects</h2><span class="num">(03)</span></div>
+
+    <div class="row reveal">
+      <div class="row-head">
+        <h3>Design <small id="cDesign"></small></h3>
+        <div class="arrows" data-for="designRow"><button data-dir="-1" aria-label="Sebelumnya">←</button><button data-dir="1" aria-label="Berikutnya">→</button></div>
+      </div>
+      <div class="slider" id="designRow"></div>
+    </div>
+
+    <div class="row reveal">
+      <div class="row-head">
+        <h3>Motion &amp; Video <small id="cMotion"></small></h3>
+        <div class="arrows" data-for="motionRow"><button data-dir="-1" aria-label="Sebelumnya">←</button><button data-dir="1" aria-label="Berikutnya">→</button></div>
+      </div>
+      <div class="slider" id="motionRow"></div>
+    </div>
+  </section>
+
+  <!-- 04 VISUAL EXPERIMENTS -->
+  <section id="experiments" class="pad">
+    <div class="sec-head"><h2>Visual Experiments</h2><span class="num">(04)</span></div>
+    <div class="masonry reveal" id="masonry"></div>
+    <p class="exp-note">Film photography · Yashica FX-3 Super 2000</p>
+  </section>
+
+  <!-- 05 TERMS -->
+  <section id="terms" class="pad">
+    <div class="sec-head"><h2>Terms</h2><span class="num">(05)</span></div>
+    <div class="terms reveal" id="termsList"></div>
+    <p class="terms-note">Setiap proyek berbeda, jadi detailnya selalu bisa didiskusikan.</p>
+  </section>
+
+  <!-- 06 CONTACT -->
+  <section id="contact" class="pad contact dark">
+    <div class="sec-head"><h2>Contact</h2><span class="num">(06)</span></div>
+    <div class="reveal">
+      <p class="eyebrow">Have a project in mind?</p>
+      <a class="big" href="mailto:EMAILMU@gmail.com">Let's make <span class="serif">something</span> together →</a>
+      <div class="socials">
+        <a href="mailto:EMAILMU@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/nzmuza" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/botunatoufoule/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@muza578" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.tiktok.com/@botunatfl" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© 2026 MUZA LAB — Nabila Zahra Muzakki</span>
+  <a href="#top">Back to top ↑</a>
+</footer>
+
+<div id="peek"><img alt=""></div>
+<div id="lb"><img alt=""></div>
+
+<script>
+/* =====================================================
+   EDIT DATA DI SINI SAJA. Tidak perlu menyentuh HTML.
+   Gambar taruh di folder images/
+   ===================================================== */
+const yt  = id => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+const ytl = id => `https://www.youtube.com/watch?v=${id}`;
+
+// 02 — Selected Works (hover = preview gambar)
+const WORKS = [
+  {title:"UNDP Human Development Report 2025 — Indonesia Dialogue", role:"Motion Graphic · Edit", year:"2025", img:yt("uQ6dHkrh-9s"), link:ytl("uQ6dHkrh-9s")},
+  {title:"Satu Bumi 2025 — NATREP",                                  role:"Motion Graphic",        year:"2025", img:yt("depO2_WdUwk"), link:ytl("depO2_WdUwk")},
+  {title:"Seminar 7 Kebiasaan Anak Indonesia Hebat",                 role:"Event Video · Design",  year:"2025", img:yt("DWAlY03-wXU"), link:ytl("DWAlY03-wXU")},
+  {title:"50 Tahun Program Imunisasi",                               role:"Event Video",           year:"2024", img:yt("iGO1dZ9BKYM"), link:ytl("iGO1dZ9BKYM")},
+  {title:"Webinar Anak dan Krisis Iklim — UNICEF Indonesia",         role:"Video Editing",         year:"2024", img:yt("yeNgG4dpGgI"), link:ytl("yeNgG4dpGgI")},
+  {title:"Social Media Graphics — Kemenhub 151, Perhumas Muda, KOGI", role:"Graphic Design",       year:"2024", img:"images/social-1.jpg", link:"#projects"}
+];
+
+// 03 — Creative Projects: baris DESIGN (slider)
+const DESIGN = [
+  {title:"Collaboration Project", desc:"Social media, educational poster and newsletter.", tag:"Editorial", img:"images/collab-1.jpg"},
+  {title:"Printing Design",       desc:"Newsletter, pocket book, flipchart, wall calendar, roll banner.", tag:"Print", img:"images/print-1.jpg"},
+  {title:"Social Media Graphics", desc:"Feed & story systems for organisations and communities.", tag:"Digital", img:"images/social-2.jpg"},
+  {title:"Educational Posters",   desc:"Complex information, made friendly and readable.", tag:"Poster", img:"images/print-2.jpg"},
+  {title:"Newsletter",            desc:"Layout editorial untuk publikasi rutin.", tag:"Editorial", img:"images/collab-2.jpg"},
+  {title:"Wall Calendar & Banner",desc:"Materi cetak untuk kampanye dan event.", tag:"Print", img:"images/print-3.jpg"}
+];
+
+// 03 — Creative Projects: baris MOTION & VIDEO (slider)
+const MOTION = [
+  {id:"uQ6dHkrh-9s", title:"UNDP HDR 2025 Indonesia Dialogue", sub:"Motion graphic"},
+  {id:"DWAlY03-wXU", title:"Seminar 7 Kebiasaan Anak Indonesia Hebat", sub:"Kemendikdasmen"},
+  {id:"depO2_WdUwk", title:"SATU BUMI 2025 | NATREP", sub:"Client: NATREP"},
+  {id:"iGO1dZ9BKYM", title:"50 Tahun Program Imunisasi", sub:"Kemenkes"},
+  {id:"QmChCcuh3z4", title:"#9 D/K — Analisis Data Mandiri Desa/Kelurahan", sub:"Explainer"},
+  {id:"yeNgG4dpGgI", title:"Anak dan Krisis Iklim", sub:"UNICEF Indonesia"}
+];
+
+// About → Explore. Sertifikat & event: cukup tulis jumlah file (cert-1.jpg ... , event-1.jpg ...)
+const CERT_COUNT  = 11;
+const EVENT_COUNT = 14;
+
+// 04 — Visual Experiments (foto film)
+const EXPERIMENTS = Array.from({length:12},(_,i)=>`photo-${i+1}.jpg`);
+
+// 05 — Terms (EDIT sesuai kebijakanmu)
+const TERMS = [
+  {t:"Scope & brief",   d:"Proyek dimulai dengan brief tertulis: tujuan, target audiens, deliverable, dan referensi visual."},
+  {t:"Timeline",        d:"Jadwal disepakati di awal. Keterlambatan materi dari klien dapat menggeser tanggal pengiriman."},
+  {t:"Revisions",       d:"Termasuk 2 putaran revisi minor. Revisi tambahan atau perubahan besar dihitung terpisah."},
+  {t:"Payment",         d:"DP 50% sebelum pengerjaan, pelunasan sebelum file final dikirim."},
+  {t:"Usage rights",    d:"Hak pakai berpindah ke klien setelah pelunasan. Aku boleh menampilkan karya di portofolio."},
+  {t:"Files & delivery",d:"File final dikirim dalam format siap pakai (PDF, PNG, MP4). Source file tersedia atas permintaan."}
+];
+
+// Teks berjalan
+const MARQUEE = ["Graphic Design","Motion Graphic","Video Editing","Editorial","Photography","Visual Experiments"];
+/* ===================================================== */
+
+const $ = s => document.querySelector(s);
+const pad2 = n => String(n).padStart(2,"0");
+
+// Marquee
+$("#track").innerHTML = [...MARQUEE,...MARQUEE,...MARQUEE,...MARQUEE].map(t=>`<span>${t} ✺</span>`).join("");
+
+// Certifications & events
+$("#certs").innerHTML  = Array.from({length:CERT_COUNT},(_,i)=>`<div class="cert" data-zoom><img loading="lazy" src="images/cert-${i+1}.jpg" alt="Sertifikat ${i+1}" onerror="this.parentElement.remove()"></div>`).join("");
+$("#events").innerHTML = Array.from({length:EVENT_COUNT},(_,i)=>`<div class="evt" data-zoom><img loading="lazy" src="images/event-${i+1}.jpg" alt="Event ${i+1}" onerror="this.parentElement.remove()"></div>`).join("");
+
+// Selected works
+$("#worksList").innerHTML = WORKS.map((w,i)=>`
+  <li><a class="work" href="${w.link}" ${w.link.startsWith("http")?'target="_blank" rel="noopener"':''} data-img="${w.img}">
+    <span class="n">${pad2(i+1)}</span>
+    <h3>${w.title}</h3>
+    <span class="role">${w.role}</span>
+    <span class="yr">${w.year}</span>
+    <img class="m-thumb" loading="lazy" src="${w.img}" alt="">
+  </a></li>`).join("");
+
+// Creative projects sliders
+$("#designRow").innerHTML = DESIGN.map(p=>`
+  <article class="pcard">
+    <div class="frame"><img loading="lazy" src="${p.img}" alt="${p.title}" onerror="this.style.opacity=0"></div>
+    <h4>${p.title}</h4><p>${p.desc}</p><span class="tag">${p.tag}</span>
+  </article>`).join("");
+$("#motionRow").innerHTML = MOTION.map(v=>`
+  <a class="vcard" href="${ytl(v.id)}" target="_blank" rel="noopener" draggable="false">
+    <div class="t"><img loading="lazy" src="${yt(v.id)}" alt="${v.title}"><b>▶</b></div>
+    <h4>${v.title}</h4><span>${v.sub}</span>
+  </a>`).join("");
+$("#cDesign").textContent = pad2(DESIGN.length);
+$("#cMotion").textContent = pad2(MOTION.length);
+
+// Experiments
+$("#masonry").innerHTML = EXPERIMENTS.map(f=>
+  `<figure data-zoom><img loading="lazy" src="images/${f}" alt="Visual experiment" onerror="this.parentElement.remove()"></figure>`).join("");
+
+// Terms
+$("#termsList").innerHTML = TERMS.map((x,i)=>`
+  <div class="term"><span class="n">${pad2(i+1)}</span><div><h3>${x.t}</h3><p>${x.d}</p></div></div>`).join("");
+
+/* ---------- Slider: tombol panah + drag mouse ---------- */
+let dragged = false;
+function initSlider(el){
+  let down=false, sx=0, sl=0;
+  el.addEventListener("pointerdown",e=>{ if(e.pointerType!=="mouse") return; down=true; dragged=false; sx=e.clientX; sl=el.scrollLeft; });
+  window.addEventListener("pointermove",e=>{
+    if(!down) return;
+    const dx=e.clientX-sx;
+    if(Math.abs(dx)>5){ dragged=true; el.classList.add("drag"); }
+    el.scrollLeft = sl-dx;
+  });
+  window.addEventListener("pointerup",()=>{ if(!down) return; down=false; el.classList.remove("drag"); setTimeout(()=>dragged=false,0); });
+  el.addEventListener("click",e=>{ if(dragged){ e.preventDefault(); e.stopPropagation(); } },true);
+}
+document.querySelectorAll(".slider").forEach(initSlider);
+
+// panah slider biasa
+document.querySelectorAll(".arrows[data-for]").forEach(box=>{
+  box.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    let slider;
+    if(box.dataset.for==="explore") slider = document.querySelector(".panel.on .slider");
+    else slider = document.getElementById(box.dataset.for);
+    slider.scrollBy({left:Number(b.dataset.dir)*slider.clientWidth*.8,behavior:"smooth"});
+  });
+});
+
+// Tab certifications / events
+document.querySelectorAll(".tabs button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on",b===btn));
+    document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id==="panel-"+btn.dataset.tab));
+  });
+});
+
+/* ---------- Hover preview di Selected Works ---------- */
+const peek=$("#peek"), pimg=peek.querySelector("img");
+let tx=0,ty=0,cx=0,cy=0;
+document.addEventListener("mousemove",e=>{tx=e.clientX+190;ty=e.clientY;});
+(function loop(){cx+=(tx-cx)*.14;cy+=(ty-cy)*.14;peek.style.left=cx+"px";peek.style.top=cy+"px";requestAnimationFrame(loop);})();
+document.querySelectorAll(".work").forEach(el=>{
+  el.addEventListener("mouseenter",()=>{pimg.src=el.dataset.img;peek.classList.add("on");});
+  el.addEventListener("mouseleave",()=>peek.classList.remove("on"));
+});
+
+/* ---------- Lightbox (sertifikat, event, foto) ---------- */
+const lb=$("#lb"), lbi=lb.querySelector("img");
+document.addEventListener("click",e=>{
+  const z=e.target.closest("[data-zoom]");
+  if(z && !dragged){ lbi.src=z.querySelector("img").src; lb.classList.add("open"); }
+  else if(e.target.closest("#lb")){ lb.classList.remove("open"); }
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("open");});
+
+/* ---------- Reveal on scroll ---------- */
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("show");io.unobserve(x.target);}}),{threshold:.1});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
