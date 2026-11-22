@@ -197,7 +197,7 @@
     </h1>
     <div class="hero-meta">
       <p>An independent creative practice. Graphic design, motion graphic, video editing and visual experiments by <b>Nabila Zahra Muzakki</b>.</p>
-      <div class="scroll">Scroll ↓ &nbsp; Est. 2025 · Indonesia</div>
+      <div class="scroll">Scroll ↓ &nbsp; Est. 2026 · Indonesia</div>
     </div>
   </div>
 
@@ -221,29 +221,6 @@
       </div>
       <p class="statement">MUZA LAB is a one-person studio where <em>ideas become visuals</em>: educational posters, campaign graphics, explainer videos and small experiments that don't fit anywhere else.</p>
     </div>
-
-    <!-- Explore: sertifikat & event dalam satu tampilan -->
-    <div class="explore reveal">
-      <div class="explore-top">
-        <div class="tabs" role="tablist">
-          <button class="on" data-tab="certs" role="tab">Certifications</button>
-          <button data-tab="events" role="tab">Events</button>
-        </div>
-        <div class="arrows" data-for="explore">
-          <button aria-label="Sebelumnya" data-dir="-1">←</button>
-          <button aria-label="Berikutnya" data-dir="1">→</button>
-        </div>
-      </div>
-      <div class="panel on" id="panel-certs">
-        <p class="explore-desc">Sertifikat pelatihan dan program yang pernah kuselesaikan. Klik untuk memperbesar.</p>
-        <div class="slider" id="certs"></div>
-      </div>
-      <div class="panel" id="panel-events">
-        <p class="explore-desc">Dokumentasi event dan kegiatan yang pernah kuikuti atau kukerjakan.</p>
-        <div class="slider" id="events"></div>
-      </div>
-    </div>
-  </section>
 
   <!-- 02 SELECTED WORKS -->
   <section id="works" class="pad">
@@ -284,6 +261,29 @@
     <div class="sec-head"><h2>Terms</h2><span class="num">(05)</span></div>
     <div class="terms reveal" id="termsList"></div>
     <p class="terms-note">Setiap proyek berbeda, jadi detailnya selalu bisa didiskusikan.</p>
+  </section>
+
+     <!-- Explore: sertifikat & event dalam satu tampilan -->
+    <div class="explore reveal">
+      <div class="explore-top">
+        <div class="tabs" role="tablist">
+          <button class="on" data-tab="certs" role="tab">Certifications</button>
+          <button data-tab="events" role="tab">Events</button>
+        </div>
+        <div class="arrows" data-for="explore">
+          <button aria-label="Sebelumnya" data-dir="-1">←</button>
+          <button aria-label="Berikutnya" data-dir="1">→</button>
+        </div>
+      </div>
+      <div class="panel on" id="panel-certs">
+        <p class="explore-desc">Sertifikat pelatihan dan program yang pernah kuselesaikan. Klik untuk memperbesar.</p>
+        <div class="slider" id="certs"></div>
+      </div>
+      <div class="panel" id="panel-events">
+        <p class="explore-desc">Dokumentasi event dan kegiatan yang pernah kuikuti atau kukerjakan.</p>
+        <div class="slider" id="events"></div>
+      </div>
+    </div>
   </section>
 
   <!-- 06 CONTACT -->
@@ -357,12 +357,12 @@ const EXPERIMENTS = Array.from({length:12},(_,i)=>`photo-${i+1}.jpg`);
 
 // 05 — Terms (EDIT sesuai kebijakanmu)
 const TERMS = [
-  {t:"Scope & brief",   d:"Proyek dimulai dengan brief tertulis: tujuan, target audiens, deliverable, dan referensi visual."},
-  {t:"Timeline",        d:"Jadwal disepakati di awal. Keterlambatan materi dari klien dapat menggeser tanggal pengiriman."},
-  {t:"Revisions",       d:"Termasuk 2 putaran revisi minor. Revisi tambahan atau perubahan besar dihitung terpisah."},
-  {t:"Payment",         d:"DP 50% sebelum pengerjaan, pelunasan sebelum file final dikirim."},
-  {t:"Usage rights",    d:"Hak pakai berpindah ke klien setelah pelunasan. Aku boleh menampilkan karya di portofolio."},
-  {t:"Files & delivery",d:"File final dikirim dalam format siap pakai (PDF, PNG, MP4). Source file tersedia atas permintaan."}
+  {t:"Scope & brief",   d:"Every project starts with a written brief outlining the objectives, target audience, deliverables, and visual references."},
+  {t:"Timeline",        d:"The timeline is agreed upon in advance. Delays in receiving materials from the client may affect the delivery schedule."},
+  {t:"Revisions",       d:"Includes up to 2 rounds of minor revisions. Additional revisions or major changes will be charged separately."},
+  {t:"Payment",         d:"A 50% deposit is required before work begins, with the remaining balance due before final files are delivered."},
+  {t:"Usage rights",    d:"Usage rights are transferred to the client upon full payment. I retain the right to showcase the work in my portfolio."},
+  {t:"Files & delivery",d:"Final files are delivered in ready-to-use formats (PDF, PNG, MP4). Source files are available upon request."}
 ];
 
 // Teks berjalan
