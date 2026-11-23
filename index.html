@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="en">
-<head><link rel="icon" type="image/png" href="./tag_una.png">
+<head><link rel="icon" type="image/png" href="./favicon_una.PNG">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MUZA LAB — Ideas that matter.
-Designs that connect.</title>
-<meta name="description" content="visual communication, branding, editorial design, and creative content production.">
-<meta property="og:title" content="MUZA LAB — create visual experiences that give brands a voice and a reason to be remembered.">
-<meta property="og:description" content="Design, editing, motion and photography.">
+<title>MUZA LAB — An independent creative practice</title>
+<meta name="description" content="A creative space for visual design, editing, motion, and photography by Nabila Zahra Muzakki.">
+<meta property="og:title" content="MUZA LAB — An independent creative practice">
+<meta property="og:description" content="Ideas that matter. Designs that connect.">
 <meta property="og:image" content="images/cover.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,7 +68,7 @@ Designs that connect.</title>
   .about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:var(--pad)}
   .statement{font-size:clamp(1.4rem,3.4vw,2.8rem);line-height:1.15;letter-spacing:-.02em}
   .statement em{font-family:var(--serif);font-weight:400;background:var(--accent);color:#0a0a0a;padding:0 .12em;border-radius:.1em}
-  .about-side p{margin-bottom:22px;color:var(--muted);max-width:400px}
+  .about-p{margin-top:28px;color:var(--muted);max-width:520px;font-size:clamp(1.05rem,1.6vw,1.25rem)}
   .disc{list-style:none;border-top:1px solid var(--line)}
   .disc li{padding:14px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:1rem}
   .disc li span{color:var(--muted);text-align:right;font-size:.92rem}
@@ -112,15 +111,15 @@ Designs that connect.</title>
   .pcard .frame{aspect-ratio:4/5}
   .xcard{width:clamp(240px,28vw,330px);display:block}
   .xcard .frame{aspect-ratio:4/3}
-  .ph{width:clamp(220px,26vw,330px)}
-  .ph .frame{aspect-ratio:4/5}
+  .ph{width:clamp(280px,34vw,420px)}
+  .ph .frame{aspect-ratio:16/9}
   .pcard h4,.xcard h4{margin-top:12px;font-weight:500;font-size:1.05rem;letter-spacing:-.01em}
   .pcard p,.xcard p{color:var(--muted);font-size:.86rem;margin-top:2px}
   .tag{display:inline-block;margin-top:8px;font-size:.72rem;border:1px solid var(--ink);border-radius:999px;padding:2px 10px}
 
   /* VIDEO EDITING (autoplay + sound toggle) */
-  .ve{width:clamp(300px,42vw,540px)}
-  .vwrap{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
+  .ve{width:clamp(190px,22vw,260px)}
+  .vwrap{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#000}
   .vwrap video{width:100%;height:100%;object-fit:cover;display:block}
   .snd{position:absolute;left:12px;bottom:12px;display:flex;align-items:center;gap:8px;font:inherit;font-size:.78rem;letter-spacing:.06em;color:#fff;background:rgba(10,10,10,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 14px;cursor:pointer;transition:.2s}
   .snd::before{content:"";width:7px;height:7px;border-radius:50%;background:#9a9a9a}
@@ -141,7 +140,7 @@ Designs that connect.</title>
   .vcard h4{margin-top:10px;font-weight:500;font-size:.98rem;line-height:1.3}
   .vcard span{color:var(--muted);font-size:.85rem}
 
-  /* LET'S WORK TOGETHER */
+  /* WORKING TOGETHER */
   .wt-intro{color:var(--muted);max-width:480px;margin:-30px 0 40px;font-size:1.05rem}
   .wt{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--pad)}
   .wt-item{border-top:1px solid var(--ink);padding-top:22px}
@@ -162,24 +161,25 @@ Designs that connect.</title>
   /* SOFTWARE (line icons, shape-shifting) */
   .soft{display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,6vw,90px);align-items:center;margin-top:clamp(60px,9vw,110px);padding-top:22px;border-top:1px solid var(--ink)}
   .stage-wrap{text-align:center}
-  .stage{width:clamp(160px,20vw,220px);aspect-ratio:1;margin:0 auto;border:1.5px solid var(--ink);display:grid;place-items:center;transition:border-radius .9s cubic-bezier(.2,.8,.2,1)}
+  .stage{width:clamp(160px,20vw,220px);aspect-ratio:1;margin:0 auto;background:var(--accent);color:#0a0a0a;display:grid;place-items:center;transition:border-radius .9s cubic-bezier(.2,.8,.2,1)}
   .stage[data-s="0"]{border-radius:24%}
   .stage[data-s="1"]{border-radius:50%}
   .stage[data-s="2"]{border-radius:50% 50% 10% 10%}
   .stage[data-s="3"]{border-radius:10% 50% 10% 50%}
   .stage[data-s="4"]{border-radius:50% 10%}
-  .stage svg{width:58%;height:58%;animation:pop .7s cubic-bezier(.2,.8,.2,1)}
+  .stage svg{width:52%;height:52%;animation:pop .7s cubic-bezier(.2,.8,.2,1)}
   @keyframes pop{from{opacity:0;transform:scale(.6) rotate(-14deg);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
   .stage-name{margin-top:16px;font-size:.9rem;letter-spacing:.04em;min-height:1.5em}
   .soft h3{font-size:1.15rem;font-weight:500;margin-bottom:6px}
   .soft p{color:var(--muted);max-width:420px;margin-bottom:24px;font-size:.98rem}
   .soft-list{display:flex;flex-wrap:wrap;gap:12px}
-  .soft-list button{width:58px;height:58px;border-radius:16px;border:1px solid var(--ink);background:none;color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:.25s}
-  .soft-list button svg{width:32px;height:32px}
-  .soft-list button.on,.soft-list button:hover{background:var(--accent);border-color:var(--accent);color:#0a0a0a}
+  .soft-list{gap:8px}
+  .soft-list button{width:66px;height:66px;border-radius:18px;border:0;background:none;color:#0a0a0a;display:grid;place-items:center;cursor:pointer;transition:.25s}
+  .soft-list button svg{width:44px;height:44px}
+  .soft-list button.on,.soft-list button:hover{background:var(--accent)}
   @media(max-width:720px){.soft{grid-template-columns:1fr}}
 
-  /* CONTACT */
+  /* GET IN TOUCH */
   .contact{padding-bottom:30px}
   .contact .big{display:block;font-size:clamp(2.4rem,10vw,9rem);line-height:.95;letter-spacing:-.05em;font-weight:700;margin:10px 0 40px;transition:color .25s}
   .contact .big:hover{color:var(--accent)}
@@ -218,7 +218,7 @@ Designs that connect.</title>
       <div class="mask"><span class="lab">Lab.</span></div>
     </h1>
     <div class="hero-meta">
-      <p>An independent creative practice. Design, editing, motion and photography by <b>Nabila Zahra Muzakki</b>.</p>
+      <p>A creative space for visual design, editing, motion, and photography by <b>Nabila Zahra Muzakki</b>.</p>
       <div class="est">Est. 2026 · Indonesia</div>
     </div>
   </div>
@@ -230,7 +230,6 @@ Designs that connect.</title>
     <div class="sec-head"><h2>About Muza</h2><span class="num">(01)</span></div>
     <div class="about-grid reveal">
       <div class="about-side">
-        <p>Experience in visual communication, branding, editorial design, and creative content production.</p>
         <ul class="disc">
           <li>Design <span>Social · Print · Editorial</span></li>
           <li>Editing <span>Event · Explainer · Campaign</span></li>
@@ -239,7 +238,10 @@ Designs that connect.</title>
         </ul>
         <a class="cv" href="https://drive.google.com/drive/folders/1E1kD3V-S5zyidhv7vp_AmQacBWZeOcRb?usp=sharing" target="_blank" rel="noopener">View CV ↗</a>
       </div>
-      <p class="statement">MUZA Lab is one-person where turning <em>ideas into visuals</em> that communicate messages clearly, from branding materials and publications to social media content, photo, and video projects.</p>
+      <div class="about-main">
+        <p class="statement">Ideas that <em>matter.</em><br>Designs that connect.</p>
+        <p class="about-p">A creative space exploring ideas through design, visual storytelling, and creative solutions.</p>
+      </div>
     </div>
   </section>
 
@@ -268,7 +270,7 @@ Designs that connect.</title>
     <!-- Video editing -->
     <div class="row reveal" id="r-video">
       <div class="row-head">
-        <h3><span class="rn">02</span> Video editing <small>Previews play on loop</small></h3>
+        <h3><span class="rn">02</span> Video editing <small>Reels &amp; TikTok format · previews play on loop</small></h3>
         <div class="arrows" data-for="videoRow"><button data-dir="-1" aria-label="Previous">←</button><button data-dir="1" aria-label="Next">→</button></div>
       </div>
       <div class="slider" id="videoRow"></div>
@@ -343,10 +345,11 @@ Designs that connect.</title>
   <section id="contact" class="pad contact dark">
     <div class="sec-head"><h2>Contact</h2><span class="num">(05)</span></div>
     <div class="reveal">
-      <p class="eyebrow">Have a project in mind?</p>
-      <a class="big" href="mailto:nzahramuza.kki@gmail.com">Let's make <span class="serif">something</span> together →</a>
+      <p class="eyebrow">Got an idea?</p>
+      <a class="big" href="mailto:nzahramuza.kki@gmail.com">Good things <span class="serif">start</span> with a conversation. →</a>
       <div class="socials">
         <a href="mailto:nzahramuza.kki@gmail.com">Email</a>
+        <a href="https://wa.me/6285156024281" target="_blank" rel="noopener">WhatsApp</a>
         <a href="https://www.linkedin.com/in/nzahramuzakki" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://www.instagram.com/botunatoufoule/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.tiktok.com/@botunatoufoule" target="_blank" rel="noopener">TikTok</a>
@@ -381,8 +384,10 @@ const DESIGN = [
 ];
 
 // Creative Projects → VIDEO EDITING (short looping preview clips)
+// Format: vertical 9:16 (Reels / TikTok), e.g. 720x1280
 // src  = your short MP4 preview in the videos/ folder (8–15 seconds is perfect)
-// id   = the YouTube ID of the full video (used for the poster image + "Watch full" link)
+// id   = the YouTube ID of the full video (poster image shown until your clip loads + "Watch full" link)
+//        If a video lives on Instagram/TikTok instead, change the link in the card (see the "Watch full" line below).
 const VIDEO_EDITS = [
   {src:"videos/ve-1.mp4", id:"uQ6dHkrh-9s", title:"UNDP Human Development Report 2025", sub:"Event highlight"},
   {src:"videos/ve-2.mp4", id:"DWAlY03-wXU", title:"7 Habits of Great Indonesian Children Seminar", sub:"Seminar edit"},
@@ -401,6 +406,7 @@ const MOTION = [
 ];
 
 // Creative Projects → PHOTO: photo-1.jpg … photo-N.jpg  (change N here)
+// Photo size: 1920 x 1080 px (16:9). Slots without a photo yet show as numbered empty boxes.
 const PHOTO_COUNT = 12;
 
 // Certifications & Events: cert-1.jpg … , event-1.jpg …  (change counts here)
@@ -426,7 +432,7 @@ const SOFT = [
   {n:"Adobe Premiere Pro",  t:"Pr"},
   {n:"Adobe Audition",    t:"Au"},
   {n:"Figma", p:`<path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/>`},
-  {n:"CapCut", p:`<path d="M4 6l8 6-8 6"/><path d="M20 6l-8 6 8 6"/><path d="M9 12h6"/>`},
+  {n:"CapCut", ln:true, p:`<path d="M4 6l8 6-8 6"/><path d="M20 6l-8 6 8 6"/><path d="M9 12h6"/>`},
   {n:"Canva", t:"Canva", it:true}
 ];
 
@@ -468,9 +474,9 @@ $("#motionRow").innerHTML = MOTION.map(v=>`
     <h4>${v.title}</h4><span>${v.sub}</span>
   </a>`).join("");
 
-// Photo (hanya foto yang ada yang tampil)
+// Photo (kotak 1920x1080 / 16:9; kotak kosong bernomor tampil sampai fotonya di-upload)
 $("#photoRow").innerHTML = Array.from({length:PHOTO_COUNT},(_,i)=>`
-  <div class="ph"><div class="frame" data-zoom><img loading="lazy" src="images/photo-${i+1}.jpg" alt="Photograph ${i+1}" onerror="this.closest('.ph').remove()"></div></div>`).join("");
+  <div class="ph"><div class="frame" data-zoom data-n="${pad2(i+1)}"><img loading="lazy" src="images/photo-${i+1}.jpg" alt="Photograph ${i+1}" onerror="${EMPTY}"></div></div>`).join("");
 
 // Working together
 $("#wtList").innerHTML = WORKING.map((x,i)=>`
@@ -544,9 +550,15 @@ document.querySelectorAll(".snd").forEach(b=>b.addEventListener("click",()=>{
 }));
 
 /* ---------- Software: shape-shifting line icons ---------- */
-const icon = s => s.t
-  ? `<svg viewBox="0 0 48 48" aria-hidden="true"><text x="24" y="25" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk,sans-serif" font-size="${s.it?15:23}" font-weight="700" ${s.it?'font-style="italic"':''} fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">${s.t}</text></svg>`
-  : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${s.p}</svg>`;
+// Solid black rounded tile with the logo knocked out (solid fill, no outlines)
+let uid = 0;
+const icon = s => {
+  const id = "mk" + (uid++);
+  const ko = s.t
+    ? `<text x="24" y="25.5" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk,sans-serif" font-size="${s.it?13:23}" font-weight="700" ${s.it?'font-style="italic"':''} fill="#000">${s.t}</text>`
+    : `<g transform="translate(10.8 10.8) scale(1.1)" ${s.ln?'fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"':'fill="#000"'}>${s.p}</g>`;
+  return `<svg viewBox="0 0 48 48" aria-hidden="true"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48"><rect width="48" height="48" fill="#fff"/>${ko}</mask></defs><rect x="2" y="2" width="44" height="44" rx="11" fill="currentColor" mask="url(#${id})"/></svg>`;
+};
 const stage=$("#stage"), sname=$("#stageName"), slist=$("#softList");
 let si=0, timer;
 slist.innerHTML = SOFT.map((s,i)=>`<button type="button" data-i="${i}" aria-label="${s.n}" title="${s.n}">${icon(s)}</button>`).join("");
