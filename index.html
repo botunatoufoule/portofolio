@@ -123,8 +123,11 @@
   .ve{width:clamp(190px,22vw,260px)}
   .vwrap{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:var(--card)}
   .vwrap video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
+  .vwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000;pointer-events:none}
+  .vwrap iframe.tt{inset:auto;top:0;left:0;width:325px;height:578px;transform-origin:0 0}
+  .shield{position:absolute;inset:0}
   .vwrap.novideo{display:grid;place-items:center}
-  .vwrap.novideo video{display:none}
+  .vwrap.novideo video,.vwrap.novideo iframe,.vwrap.novideo .shield{display:none}
   .vwrap.novideo::after{content:attr(data-n);font-family:var(--serif);font-style:italic;font-size:2.6rem;color:var(--muted)}
   .snd{position:absolute;left:12px;bottom:12px;display:flex;align-items:center;gap:8px;font:inherit;font-size:.78rem;letter-spacing:.06em;color:#fff;background:rgba(10,10,10,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 14px;cursor:pointer;transition:.2s}
   .snd::before{content:"";width:7px;height:7px;border-radius:50%;background:#9a9a9a}
@@ -388,14 +391,21 @@ const DESIGN = [
 ];
 
 // Creative Projects → VIDEO EDITING (vertical 9:16, autoplay muted loop + Sound on/off)
-// src      = MP4 preview file in the videos/ folder (vertical 720x1280, 8–15 seconds). Not uploaded yet? The card just stays an empty numbered box.
-// link     = the original Instagram / TikTok post. Shows as "Watch on …" under the video.
-// platform = "Instagram" or "TikTok"
-// Add a new video = add one line. Leave src/link out to keep an empty slot.
+// ► One line = one video. Pick ONE way to play it:
+//    yt:"…"      YouTube Shorts link  → autoplay + loop + Sound button
+//    tiktok:"…"  TikTok link          → autoplay + loop + Sound button
+//    src:"videos/ve-3.mp4"  your own MP4 file → autoplay + loop + Sound button
+//    Instagram links CAN'T autoplay (Instagram does not allow it). Use link: + platform: so people can open the reel,
+//    and play the video itself from a YouTube / TikTok / MP4 source.
+//    title    = text under the video
+//    link     = optional, where "Watch on …" goes (default: the YouTube / TikTok link itself)
+//    platform = optional, the name shown in "Watch on …" when you use link (e.g. "Instagram")
+// Add a new video = add one line. A line without yt/tiktok/src stays an empty numbered box.
 const VIDEO_EDITS = [
-  {yt:"https://youtube.com/shorts/tKFgrwdHiOU?feature=share", title:"Grab Modal", platform:"Instagram", link:"https://youtube.com/shorts/tKFgrwdHiOU?feature=share"},
-  {yt:"https://www.youtube.com/shorts/XXXXXXXXXXX", title:"Video 02", platform:"TikTok", link:"https://www.tiktok.com/@sahabatgrabid/video/7577375494404934930"},
-
+  {yt:"https://youtube.com/shorts/tKFgrwdHiOU?feature=share", title:"Grab Modal"},
+  {tiktok:"https://www.tiktok.com/@sahabatgrabid/video/7577375494404934930", title:"Video 02"},
+  {title:"Video 03", platform:"Instagram", link:"https://www.instagram.com/sahabatgrabid/reel/DRbqJHTEmqO/"},
+  {title:"Video 04", platform:"Instagram", link:"https://www.instagram.com/reel/C3RZL4VSvXx/"}
 ];
 
 // Creative Projects → MOTION (YouTube links)
@@ -460,15 +470,26 @@ $("#designRow").innerHTML = DESIGN.map((p,i)=>`
   </article>`).join("");
 
 // Video editing
-$("#videoRow").innerHTML = VIDEO_EDITS.map((v,i)=>`
+const ytId = u => { const s=String(u||""); const m=s.match(/(?:shorts\/|v=|youtu\.be\/|embed\/)([\w-]{11})/); return m ? m[1] : ""; };
+const ttId = u => { const m=String(u||"").match(/video\/(\d{8,})/); return m ? m[1] : ""; };
+$("#videoRow").innerHTML = VIDEO_EDITS.map((v,i)=>{
+  const y = ytId(v.yt), t = ttId(v.tiktok);
+  const kind = y ? "yt" : t ? "tt" : v.src ? "mp4" : "";
+  const auto = y ? `https://www.youtube.com/shorts/${y}` : t ? String(v.tiktok).split("?")[0] : "";
+  const link = v.link || auto;
+  const platform = v.link ? (v.platform||"the original post") : (y ? "YouTube" : "TikTok");
+  const media = (kind==="yt"||kind==="tt")
+    ? `<iframe${kind==="tt"?' class="tt"':''} title="${v.title||"Video"}" data-id="${y||t}" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" tabindex="-1"></iframe><div class="shield"></div>`
+    : kind==="mp4" ? `<video muted loop playsinline preload="none" data-src="${v.src}"></video>` : "";
+  return `
   <article class="ve">
-    <div class="vwrap${v.src?"":" novideo"}" data-n="${pad2(i+1)}">
-      ${v.src?`<video muted loop playsinline preload="none" data-src="${v.src}"></video>
-      <button class="snd" type="button" aria-label="Toggle sound">Sound off</button>`:""}
+    <div class="vwrap${kind?"":" novideo"}" data-n="${pad2(i+1)}" data-kind="${kind}">
+      ${media}${kind?`<button class="snd" type="button" aria-label="Toggle sound">Sound off</button>`:""}
     </div>
     <h4>${v.title||"Coming soon"}</h4>
-    <p>${v.link?`<a href="${v.link}" target="_blank" rel="noopener">Watch on ${v.platform||"the original post"} ↗</a>`:""}</p>
-  </article>`).join("");
+    <p>${link?`<a href="${link}" target="_blank" rel="noopener">Watch on ${platform} ↗</a>`:""}</p>
+  </article>`;
+}).join("");
 
 // Motion
 $("#motionRow").innerHTML = MOTION.map(v=>`
@@ -527,30 +548,61 @@ document.querySelectorAll(".tabs button").forEach(btn=>{
 });
 
 /* ---------- Video editing: autoplay muted loop + sound toggle ---------- */
-const vids = [...document.querySelectorAll(".ve video")];
-const vio = new IntersectionObserver(es=>es.forEach(x=>{
-  const v = x.target;
-  if(x.isIntersecting){
-    if(!v.getAttribute("src")) v.src = v.dataset.src;
-    if(!reduce) v.play().catch(()=>{});
-  } else { v.pause(); }
-}),{threshold:.35});
-vids.forEach(v=>{
-  vio.observe(v);
-  v.addEventListener("error",()=>v.closest(".vwrap").classList.add("novideo"));   // file belum ada → kotak kosong bernomor
-});
-function setSound(v,on){
-  v.muted = !on;
-  const b = v.closest(".vwrap").querySelector(".snd");
-  b.textContent = on ? "Sound on" : "Sound off";
-  b.classList.toggle("on",on);
-}
-document.querySelectorAll(".snd").forEach(b=>b.addEventListener("click",()=>{
-  const v = b.closest(".vwrap").querySelector("video");
-  const turnOn = v.muted;
-  vids.forEach(o=>setSound(o,false));          // hanya satu video bersuara
-  if(turnOn){ setSound(v,true); v.play().catch(()=>{}); }
+// Satu pemain per kotak: YouTube (yt), TikTok (tt) atau MP4 (mp4)
+const players = [...document.querySelectorAll(".vwrap")].filter(w=>w.dataset.kind).map(w=>({
+  w, kind:w.dataset.kind, el:w.querySelector(w.dataset.kind==="mp4" ? "video" : "iframe"),
+  started:false, sound:false, btn:w.querySelector(".snd")
 }));
+const originQ = location.protocol.startsWith("http") ? "&origin="+encodeURIComponent(location.origin) : "";
+const CMD = {
+  yt:{play:"playVideo",pause:"pauseVideo",mute:"mute",unMute:"unMute"},
+  tt:{play:"play",pause:"pause",mute:"mute",unMute:"unMute"}
+};
+function cmd(p,a){
+  try{
+    const n = CMD[p.kind][a];
+    p.el.contentWindow.postMessage(p.kind==="tt" ? {type:n,"x-tiktok-player":true} : JSON.stringify({event:"command",func:n,args:[]}),"*");
+  }catch(e){}
+}
+function srcFor(p){
+  const id = p.el.dataset.id;
+  return p.kind==="yt"
+    ? `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1${originQ}`
+    : `https://www.tiktok.com/player/v1/${id}?autoplay=1&loop=1&controls=0&music_info=0&description=0&rel=0&closed_caption=0&native_context_menu=0&fullscreen_button=0&timestamp=0`;
+}
+function playP(p){
+  if(reduce) return;
+  if(p.kind==="mp4"){ if(!p.el.getAttribute("src")) p.el.src = p.el.dataset.src; p.el.play().catch(()=>{}); return; }
+  if(!p.started){ p.el.src = srcFor(p); p.started = true; } else cmd(p,"play");
+}
+function pauseP(p){
+  if(p.kind==="mp4") p.el.pause(); else if(p.started) cmd(p,"pause");
+}
+function setSound(p,on){
+  p.sound = on;
+  if(p.kind==="mp4") p.el.muted = !on; else cmd(p, on ? "unMute" : "mute");
+  p.btn.textContent = on ? "Sound on" : "Sound off";
+  p.btn.classList.toggle("on",on);
+}
+// TikTok: pastikan mulai tanpa suara, dan skala pemain 325×578 agar pas di kotak
+players.filter(p=>p.kind==="tt").forEach(p=>p.el.addEventListener("load",()=>{ if(!p.sound) cmd(p,"mute"); }));
+const fitTT = ()=>players.filter(p=>p.kind==="tt").forEach(p=>{ p.el.style.transform = `scale(${p.w.clientWidth/325})`; });
+addEventListener("resize",fitTT); fitTT();
+
+const vio = new IntersectionObserver(es=>es.forEach(x=>{
+  const p = players.find(q=>q.w===x.target);
+  if(!p) return;
+  if(x.isIntersecting) playP(p); else pauseP(p);
+}),{threshold:.35});
+players.forEach(p=>{
+  vio.observe(p.w);
+  if(p.kind==="mp4") p.el.addEventListener("error",()=>p.w.classList.add("novideo"));   // file belum ada → kotak kosong bernomor
+  p.btn.addEventListener("click",()=>{
+    const turnOn = !p.sound;
+    players.forEach(o=>{ if(o.sound) setSound(o,false); });   // hanya satu video bersuara
+    if(turnOn){ setSound(p,true); if(p.kind==="mp4") p.el.play().catch(()=>{}); else cmd(p,"play"); }
+  });
+});
 
 /* ---------- Software: shape-shifting logos ---------- */
 // Solid black rounded tile with the logo knocked out (solid fill, no outlines)
